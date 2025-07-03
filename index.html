@@ -2,17 +2,64 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <title>Vítejte</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Zde vlož AdSense kód po schválení -->
+  <title>Vítejte na mém webu!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5352646660555569"
+     crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      background-color: white;
+      color: black;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #ddd;
+      }
+      a {
+        color: #8ab4f8;
+      }
+    }
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #ad-container {
+      margin: 2em auto;
+      width: 320px;
+      height: 100px;
+      border: 1px dashed gray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: gray;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Vítejte na mém webu!</h1>
   <p>Zde bude reklama a obsah pro ověření Google AdSense.</p>
 
-  <!-- Zástupné místo pro reklamu -->
-  <div>
-    <!-- Vlož sem AdSense reklamní blok -->
+  <div id="ad-container">
+    <!-- AdSense reklama -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:320px;height:100px"
+         data-ad-client="ca-pub-5352646660555569"
+         data-ad-slot="1234567890"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <p>Po chvíli budete přesměrováni na <a href="/YT-downloader/">YT-downloader</a>.</p>
@@ -23,5 +70,6 @@
       window.location.href = "/YT-downloader/";
     }, 10000);
   </script>
+
 </body>
 </html>
