@@ -1,75 +1,146 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8" />
-<title>Vítejte na mém webu!</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>YT downloader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5352646660555569"
-crossorigin="anonymous"></script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5352646660555569"
+     crossorigin="anonymous"></script>
 
-<style>
-body {
-font-family: Arial, sans-serif;
-padding: 2em;
-background-color: white;
-color: black;
-text-align: center;
-}
-@media (prefers-color-scheme: dark) {
-body {
-background-color: #121212;
-color: #ddd;
-}
-a {
-color: #8ab4f8;
-}
-}
-a {
-color: blue;
-text-decoration: none;
-}
-a:hover {
-text-decoration: underline;
-}
-#ad-container {
-margin: 2em auto;
-width: 320px;
-height: 100px;
-border: 1px dashed gray;
-display: flex;
-justify-content: center;
-align-items: center;
-color: gray;
-font-style: italic;
-}
-</style>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 1em;
+      background-color: white;
+      color: black;
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #ddd;
+      }
+      a {
+        color: #8ab4f8;
+      }
+    }
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    #redirect-info {
+      margin-top: 1em;
+      font-weight: bold;
+      display: none;
+    }
+    .ad-container {
+      margin-top: 2em;
+    }
+    section {
+      max-width: 800px;
+      margin: 0.5em auto;
+      text-align: left;
+    }
+    h2 {
+      color: #0057b8;
+    }
+  </style>
 </head>
 <body>
+  <h1 id="welcome"></h1>
+  <p id="message"></p>
+  <p id="redirect-info"></p>
 
-<h1>Vítejte na mém webu!</h1>
-<p>Zde bude reklama a obsah pro ověření Google AdSense.</p>
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5352646660555569"
+         data-ad-slot="3903663904"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
-<div id="ad-container">
-<!-- AdSense reklama -->
-<ins class="adsbygoogle"
-style="display:inline-block;width:320px;height:100px"
-data-ad-client="ca-pub-5352646660555569"
-data-ad-slot="1234567890"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
+  <section id="info-section"></section>
 
-<p>Po chvíli budete přesměrováni na <a href="/YT-downloader/">YT-downloader</a>.</p>
+  <script>
+    const lang = navigator.language || navigator.userLanguage || 'cs';
+    const welcomeEl = document.getElementById('welcome');
+    const messageEl = document.getElementById('message');
+    const redirectInfo = document.getElementById('redirect-info');
+    const infoSection = document.getElementById('info-section');
 
-<script>
-// Přesměrování po 10 sekundách
-setTimeout(() => {
-window.location.href = "/YT-downloader/";
-    }, 30000);
-</script>
+    const content = {
+      cs: {
+        welcome: 'Děkujeme, že používáte náš YT downloader!',
+        message: 'Klikněte na odkaz níže pro přesměrování na cílovou stránku.',
+        redirectText: 'Pro přesměrování na cílovou stránku ',
+        clickHere: 'klikněte zde',
+        info: `
+          <h2>Jak nástroj funguje? 🎥🔊</h2>
+          <p>Náš nástroj vám umožní snadno a rychle stahovat videa a audio z YouTube ve <strong>špičkové kvalitě</strong> bez jakýchkoliv limitů. Ať už si chcete uložit své oblíbené hudební klipy, podcasty, přednášky nebo zábavná videa – s námi to zvládnete během několika vteřin.</p>
+          <p>Stahování probíhá naprosto jednoduše: zadáte odkaz a název videa, a během chvilky máte obsah připravený ke stažení. 🎬📥</p>
 
+          <h2>FAQ (Často kladené dotazy) ❓</h2>
+          <p><strong>Je tento nástroj legální?</strong><br>Stahujte pouze obsah, ke kterému máte oprávnění. Neneseme odpovědnost za porušení autorských práv.</p>
+          <p><strong>Ukládáte osobní údaje?</strong><br>Neukládáme žádná osobní data kromě IP adresy pro detekci zneužití. Údaje se mažou po 30 dnech.</p>
+          <p><strong>Používáte cookies?</strong><br>Ano, ale pouze funkční – např. pro zapamatování jazyka nebo režimu zobrazení.</p>
+          <p><strong>Mohu sdílet tento nástroj?</strong><br>Ano, ale pouze s upozorněním na jeho zodpovědné používání.</p>
+        `
+      },
+      en: {
+        welcome: 'Thank you for using our YT downloader!',
+        message: 'Click the link below to go to the destination page.',
+        redirectText: 'To go to the destination page, ',
+        clickHere: 'click here',
+        info: `
+          <h2>How does this tool work? 🎥🔊</h2>
+          <p>Our tool allows you to easily and quickly download videos and audio from YouTube in <strong>the highest available quality</strong> with absolutely no limits. Whether you want to save your favorite music clips, podcasts, lectures, or fun videos – you can do it within seconds.</p>
+          <p>The download process is simple: paste the link and name of the video and get your content ready to go. 🎬📥</p>
+
+          <h2>FAQ (Frequently Asked Questions) ❓</h2>
+          <p><strong>Is this tool legal?</strong><br>You should only download content you are authorized to. We are not liable for any copyright violations.</p>
+          <p><strong>Do you store personal data?</strong><br>We do not store personal data except IP addresses to detect misuse. They are deleted after 30 days.</p>
+          <p><strong>Do you use cookies?</strong><br>Yes, but only functional cookies – like remembering language or display mode preferences.</p>
+          <p><strong>Can I share this tool?</strong><br>Yes, but only with a warning about responsible use.</p>
+        `
+      }
+    };
+
+    const langKey = lang.startsWith('cs') ? 'cs' : 'en';
+    welcomeEl.textContent = content[langKey].welcome;
+    messageEl.textContent = content[langKey].message;
+    infoSection.innerHTML = content[langKey].info;
+
+    fetch('https://raw.githubusercontent.com/JelenXP/YT-downloader/main/url.txt?t='+ Date.now(), {cache: 'no-store'})
+      .then(response => response.text())
+      .then(url => {
+        url = url.trim();
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = url;
+          link.textContent = content[langKey].clickHere;
+          redirectInfo.textContent = content[langKey].redirectText;
+          redirectInfo.appendChild(link);
+          redirectInfo.appendChild(document.createTextNode('.'));
+          redirectInfo.style.display = 'block';
+        }, 5000);
+      })
+      .catch(() => {
+        messageEl.textContent = langKey === 'cs'
+          ? 'Chyba při načítání cílové adresy.'
+          : 'Error loading destination URL.';
+      });
+  </script>
 </body>
 </html>
